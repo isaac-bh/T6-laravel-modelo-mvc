@@ -1,66 +1,46 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Trabajo 06 - Laravel y el modelo MVC
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Programacion para Internet
 
-## About Laravel
+### Alumno
+Isaac Alain Benavides Hernandez
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Código:** 216817953
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+> [!NOTE]  
+> Debido a que no tengo un servidor para correr el backend, no subí esta practica a Github Pages.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+#### Instrucciones de ejecución
+1.	Instalar PHP, Composer y NodeJS.
+2.	Entrar a la carpeta backend.
+3.	Ejecutar el comando npm install && npm run build.
+4.	Ejecutar el comando composer run dev.
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+#### Funcionamiento
+Al igual que en la practica anterior, se pueden agregar tareas, sin embargo, estas no se respaldan en localStorage, se mandan al backend utilizando una solicitud `POST` a la ruta `http://localhost:3000/tasks`.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+![Agregando una tarea a la lista](images/01.png)
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Si revisamos nuestro backend, podremos ver como estas tareas agregadas desde el formulario del frontend, estan guardadas en la base de datos, podemos revisar esto haciendo una solicitud `GET` a la ruta `http://localhost:3000/tasks`.
 
-## Laravel Sponsors
+![Solicitud GET a /tasks ](images/02.png)
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Si revisamos el contenido de la base de datos, podremos ver estas tareas guardadas.
 
-### Premium Partners
+![Revisando el contenido de la tabla tareas](images/03.png)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+Tambien, se pueden marcar tareas como completadas dando click en el texto de la tarea. Las tareas completadas son modificadas en la base de datos utilizando una solicitud `PATCH` a la ruta `http://localhost:3000/tasks/:id`.
 
-## Contributing
+![Completando 2 tareas de la lista](images/04.png)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Si revisamos el backend, podremos ver que la propiedad completada de cada tarea marcada completada paso de 0 a 1.
+![Solicitud GET a tasks para mostrar las modificaciones](images/05.png)
 
-## Code of Conduct
+Al igual que en la practica anterior, se pueden eliminar tareas, al momento de hacer click en el boton "-" de la tarea, se envia una solicitud `DELETE` a la ruta `http://localhost:3000/tasks/:id` para eliminar dicha tarea de la base de datos.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+![Eliminación de una tarea](images/06.png)
 
-## Security Vulnerabilities
+Si volvemos a revisar el backend haciendo una solicitud `GET` a la ruta `http://localhost:3000/tasks`, podremos ver que solo queda una tarea en la base de datos.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+![Solicitud GET a tasks para mostrar las tareas restantes](images/07.png)
